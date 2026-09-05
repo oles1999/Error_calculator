@@ -10,15 +10,17 @@ find_package(Boost REQUIRED)
 
 qt_standard_project_setup()
 
+set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/ui")
+
 qt_add_executable(Error_calculator
     WIN32 MACOSX_BUNDLE
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    datatable.h
-    datatable.cpp
-    app.rc
+    src/main.cpp
+    src/mainwindow.cpp
+    src/mainwindow.h
+    ui/mainwindow.ui
+    src/datatable.h
+    src/datatable.cpp
+    resources/app.rc
 )
 
 
