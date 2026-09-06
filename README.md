@@ -1,66 +1,71 @@
+[🇬🇧 **English**](README.md) | [🇺🇦 **Українська**](README.uk.md)
+
+---
+
 # 📊 Error Calculator
 
-**Error Calculator** — це настільний C++/Qt додаток, призначений для автоматизації статистичної обробки результатів вимірювань, розрахунку  похибок та коефіцієнтів Стьюдента.
+**Error Calculator** is a desktop C++/Qt application designed to automate the statistical processing of measurement results, calculating errors, and Student's t-coefficients.
 
 ---
 
-## 🚀 Основні можливості
+## 🚀 Key Features
 
-* **Статистичний аналіз:** Обчислення середнього арифметичного, дисперсії, середнього квадратичного відхилення та абсолютної похибки.
-* **Розподіл Стьюдента:** Точний розрахунок коефіцієнту Стьюдента за допомогою бібліотеки **Boost.Math**.
-* **Динамічна таблиця даних:** Зручне введення вибірки, динамічна корекція даних та обробка некоректних значень.
-* **Інтерактивний інтерфейс:** Інтелектуальна перевірка та автокорекція введених даних при втраті фокусу чи редагуванні.
-* **Зручний інсталятор:** Готовий установник Windows з можливістю автоматичного розгортання Microsoft Visual C++ Redistributable.
-
----
-
-## 🛠 Стек технологій
-
-* **Мова програмування:** C++17
-* **Фреймворк:** Qt 6 (Widgets)
-* **Система збірки:** CMake (3.19+)
-* **Додаткові бібліотеки:** Boost
-* **Компілятор:** MSVC (Visual Studio 2026)
-* **Пакувальник дистрибутиву:** Inno Setup 6
-
-## 🛠 Інсталяція та Збірка
-
-### 📦 Варіант 1: Використовуючи готовий інсталятор
-
-Запустіть файл `ErrorCalculator_Setup_v0.1.exe` та виконайте інструкції майстра встановлення для швидкої інсталяції додатка.
+* **Statistical Analysis:** Calculation of the arithmetic mean, variance, standard deviation, and absolute error.
+* **Student's Distribution:** Accurate calculation of Student's t-coefficient using the **Boost.Math** library.
+* **Dynamic Data Table:** Convenient sample input, dynamic data correction, and handling of invalid values.
+* **Interactive Interface:** Intelligent validation and auto-correction of entered data upon loss of focus or editing.
+* **Convenient Installer:** A ready-to-use Windows installer with the capability for automatic deployment of the Microsoft Visual C++ Redistributable.
 
 ---
 
-### ⚙️ Варіант 2: Збірка з сирцевого коду через CMake
+## 🛠 Technology Stack
 
-1. **Завантаження вихідних даних:** Склонуйте репозиторій із проєктом. Завантажте та розпакуйте архів бібліотеки [Boost 1.92.0](https://archives.boost.io/release/1.92.0/source/boost_1_92_0.zip).
-2. **Вказання шляху до Boost:** Відкрийте `CMakeLists.txt` у корені проєкту та вкажіть шлях до директорії, куди розпаковано Boost, додавши рядки: `set(Boost_ROOT "C:/Path/to/boost_1_92_0")` та `set(BOOST_ROOT "C:/Path/to/boost_1_92_0")`.
-3. **Підготовка терміналу:** Відкрийте термінал **Qt 6.x (MSVC 2022)** *(також можна використовувати Qt MinGW, MSYS2 Shell або звичайний CMD/PowerShell, якщо всі залежності додані до PATH)* та перейдіть до папки проєкту командою `cd "C:\Path\to\project"`.
-4. **Компіляція проєкту:** Сконфігуруйте проєкт командою `cmake -B build -S . -DCMAKE_BUILD_TYPE=Release`, а потім зберіть його: `cmake --build build --config Release`.
-5. **Остаточна збірка та розгортання:** Перейдіть у папку зі скомпільованим проєктом `cd build` та виконайте команду встановлення: `cmake --install . --prefix "C:\Path\to\install"`. Параметр `--prefix` вказує шлях до папки, куди буде розгорнуто повністю автономний додаток разом зі всіма необхідними `.dll` файлами Qt.
+* **Programming Language:** C++17
+* **Framework:** Qt 6 (Widgets)
+* **Build System:** CMake (3.19+)
+* **Additional Libraries:** Boost
+* **Compiler:** MSVC (Visual Studio 2026)
+* **Distribution Packager:** Inno Setup 6
+
+## 🛠 Installation and Build
+
+### 📦 Option 1: Using the ready-made installer
+
+Run the `ErrorCalculator_Setup_v0.1.exe` file and follow the installation wizard instructions for a quick application setup.
 
 ---
 
-### 🎨 Варіант 3: Використовуючи Qt Creator
+### ⚙️ Option 2: Building from source code via CMake
 
-1. Склонуйте проєкт і завантажте архів [Boost](https://archives.boost.io/release/1.92.0/source/boost_1_92_0.zip).
-2. Запустіть **Qt Creator** та відкрийте проєкт через файл `CMakeLists.txt`.
-3. У файлі `CMakeLists.txt` пропишіть шлях до папки з Boost, додавши змінні `set(Boost_ROOT "C:/Path/to/boost")` та `set(BOOST_ROOT "C:/Path/to/boost")`.
-4. Запустіть збірку проєкту в конфігурації **Release** (`Ctrl + B`).
-5. Відкрийте термінал Qt 6.x (MSVC 2022), перейдіть до папки збірки `cd build` та запустіть команду розгортання: `cmake --install . --prefix "C:\Path\to\install"`.
+1. **Download Source Data:** Clone the repository with the project. Download and extract the [Boost 1.92.0](https://archives.boost.io/release/1.92.0/source/boost_1_92_0.zip) library archive.
+2. **Specify Boost Path:** Open `CMakeLists.txt` in the project root and specify the path to the directory where Boost is extracted by adding the lines: `set(Boost_ROOT "C:/Path/to/boost_1_92_0")` and `set(BOOST_ROOT "C:/Path/to/boost_1_92_0")`.
+3. **Prepare the Terminal:** Open the **Qt 6.x (MSVC 2022)** terminal *(you can also use Qt MinGW, MSYS2 Shell, or a standard CMD/PowerShell if all dependencies are added to the PATH)* and navigate to the project folder using the command `cd "C:\Path\to\project"`.
+4. **Compile the Project:** Configure the project with the command `cmake -B build -S . -DCMAKE_BUILD_TYPE=Release`, and then build it: `cmake --build build --config Release`.
+5. **Final Build and Deployment:** Navigate to the compiled project folder `cd build` and execute the installation command: `cmake --install . --prefix "C:\Path\to\install"`. The `--prefix` parameter specifies the path to the folder where the fully standalone application will be deployed along with all necessary Qt `.dll` files.
+
 ---
 
-## 📁 Структура проєкту
+### 🎨 Option 3: Using Qt Creator
+
+1. Clone the project and download the [Boost](https://archives.boost.io/release/1.92.0/source/boost_1_92_0.zip) archive.
+2. Launch **Qt Creator** and open the project via the `CMakeLists.txt` file.
+3. In the `CMakeLists.txt` file, specify the path to the Boost folder by adding the variables `set(Boost_ROOT "C:/Path/to/boost")` and `set(BOOST_ROOT "C:/Path/to/boost")`.
+4. Start the project build in the **Release** configuration (`Ctrl + B`).
+5. Open the Qt 6.x (MSVC 2022) terminal, navigate to the build folder `cd build`, and run the deployment command: `cmake --install . --prefix "C:\Path\to\install"`.
+
+---
+
+## 📁 Project Structure
 
 ```text
 Error_calculator/
-├── src/                  # Файли C++ (.cpp, .h)
-│   ├── main.cpp          # Точка входу
-│   ├── mainwindow.cpp    # Логіка головного вікна
-│   └── datatable.cpp     # Модель таблиці та обробка даних
-├── ui/                   # Файли графічного інтерфейсу Qt Designer (.ui)
+├── src/                  # C++ source files (.cpp, .h)
+│   ├── main.cpp          # Entry point
+│   ├── mainwindow.cpp    # Main window logic
+│   └── datatable.cpp     # Table model and data processing
+├── ui/                   # Qt Designer GUI files (.ui)
 │   └── mainwindow.ui
-├── resources/            # Іконки та ресурси додатку (.rc, .ico)
-├── installer/            # Скрипт Inno Setup (.iss) для створення інсталятора
-├── CMakeLists.txt        # Конфігураційний файл CMake
-└── .gitignore            # Виключення для Git
+├── resources/            # Application icons and resources (.rc, .ico)
+├── installer/            # Inno Setup script (.iss) for installer creation
+├── CMakeLists.txt        # CMake configuration file
+└── .gitignore            # Git exclusions

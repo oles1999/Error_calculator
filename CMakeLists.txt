@@ -21,8 +21,9 @@ qt_add_executable(Error_calculator
     src/datatable.h
     src/datatable.cpp
     resources/app.rc
-    README.md
+    README.uk.md
     LICENSE
+    README.md
 )
 
 

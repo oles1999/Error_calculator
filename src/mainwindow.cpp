@@ -56,12 +56,12 @@ void MainWindow::CalculateErrors()
     double instErr = ui->lineEditInstErr->text().toDouble();
     StatResults results = ui->tableWidgetData->GetStatResults(confidence, instErr);
     QString log = QString(
-                      "Сума: %1 %8\n"
-                      "Дисперсія: %2 %8\n"
-                      "Стандартна похибка середнього: %3 %8\n"
-                      "Результат: %4 ± %5 %8\n"
-                      "Коефіцієнт Стюдента: %6\n"
-                      "Кількість вимірів: %7\n\n"
+                      "Sum: %1 %8\n"
+                      "Variance: %2 %8\n"
+                      "Standard Error of the Mean: %3 %8\n"
+                      "Result: %4 ± %5 %8\n"
+                      "Student's t-coefficient: %6\n"
+                      "Number of Measurements: %7\n\n"
                       ).arg(results.sum)
                       .arg(results.dispersion)
                       .arg(results.standartError)
