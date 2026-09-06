@@ -2,9 +2,24 @@
 
 ---
 
+
 # 📊 Error Calculator
 
+![C++17](https://img.shields.io/badge/C%2B%2B-17-blue)
+![Qt 6](https://img.shields.io/badge/Qt-6.x-green)
+![CMake](https://img.shields.io/badge/CMake-3.19%2B-red)
+![Inno Setup](https://img.shields.io/badge/Inno_Setup-6.x-blue)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
+
 **Error Calculator** — це настільний C++/Qt додаток, призначений для автоматизації статистичної обробки результатів вимірювань, розрахунку  похибок та коефіцієнтів Стьюдента.
+
+### 🎬  Демонстрація роботи
+
+![Error Calculator Demo](assets/demo.gif)
+
+### 📸  Інтерфейс програми
+
+![Error Calculator Screenshot](assets/demo.png)
 
 ---
 
