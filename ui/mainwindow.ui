@@ -61,7 +61,7 @@
         <row/>
         <column>
          <property name="text">
-          <string>Виміри</string>
+          <string>Measurements</string>
          </property>
         </column>
        </widget>
