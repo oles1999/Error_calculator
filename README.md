@@ -1,10 +1,20 @@
 [🇬🇧 **English**](README.md) | [🇺🇦 **Українська**](README.uk.md)
 
+
+
 ---
 
 # 📊 Error Calculator
 
 **Error Calculator** is a desktop C++/Qt application designed to automate the statistical processing of measurement results, calculating errors, and Student's t-coefficients.
+
+### 🎬 Demo / Демонстрація роботи
+
+![Error Calculator Demo](assets/demo.gif)
+
+### 📸 Interface Preview / Інтерфейс програми
+
+![Error Calculator Screenshot](assets/screenshot.png)
 
 ---
 
