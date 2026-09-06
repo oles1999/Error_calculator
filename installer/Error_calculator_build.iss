@@ -17,7 +17,7 @@ ArchitecturesInstallIn64BitMode=x64compatible
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 ; Галочка ВИМКНЕНА за замовчуванням:
-Name: "vcredist"; Description: "Встановити Microsoft Visual C++ v14 Redistributable (x64)"; GroupDescription: "Необхідний софт:"; Flags: unchecked
+Name: "vcredist"; Description: "Install Microsoft Visual C++ v14 Redistributable (x64)"; GroupDescription: "Required Software:"; Flags: unchecked
 
 [Files]
 Source: "E:\MyProjects\Error_calculator\Error_calculator\dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -27,5 +27,5 @@ Name: "{group}\Error Calculator"; Filename: "{app}\bin\Error_calculator.exe"
 Name: "{autodesktop}\Error Calculator"; Filename: "{app}\bin\Error_calculator.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\vc_redist.x64.exe"; Parameters: "/q /norestart"; Flags: waituntilterminated skipifdoesntexist; Tasks: vcredist; Description: "Встановлення системних компонентів Visual C++"
+Filename: "{app}\vc_redist.x64.exe"; Parameters: "/q /norestart"; Flags: waituntilterminated skipifdoesntexist; Tasks: vcredist; Description: "Visual C++ Redistributable Installation"
 Filename: "{app}\bin\Error_calculator.exe"; Description: "{cm:LaunchProgram,Error Calculator}"; Flags: nowait postinstall skipifsilent
