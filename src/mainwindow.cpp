@@ -54,7 +54,7 @@ void MainWindow::CalculateErrors()
 {
     double confidence = ui->lineEditTtest->text().toDouble();
     double instErr = ui->lineEditInstErr->text().toDouble();
-    StatResults results = ui->tableWidgetData->GetStatResults(confidence, instErr);
+    ErrCalcEngine::StatResults results = ui->tableWidgetData->GetStatResults(confidence, instErr);
     QString log = QString(
                       "Sum: %1 %8\n"
                       "Variance: %2 %8\n"

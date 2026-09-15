@@ -1,9 +1,7 @@
 #include "datatable.h"
 #include <set>
-#include <cmath>
-#include <boost/math/statistics/univariate_statistics.hpp>
-#include <boost/math/statistics/t_test.hpp>
-#include <numeric>
+#include <QClipboard>
+#include <QGuiApplication>
 
 //-------------------------PUBLIC----------------------------------------------
 
@@ -29,11 +27,18 @@ void DataTable::keyPressEvent(QKeyEvent* event)
         for (qsizetype i = 0; i < items.size(); i++){
             rows.insert(items.at(i)->row());
         }
+        size_t nrows = this->rowCount();
         for (int row : rows){
             this->removeRow(row);
         }
+        if (rows.size() == nrows){
+            this->setRowCount(1);
+        }
     }
 
+    if (event->matches(QKeySequence::Paste)){
+        this->PasteStr(QGuiApplication::clipboard()->text());
+    }
     QModelIndex index = currentIndex();
     if (index.isValid() && !item(index.row(), index.column())) {
         setItem(index.row(), index.column(), new QTableWidgetItem());
@@ -41,29 +46,49 @@ void DataTable::keyPressEvent(QKeyEvent* event)
     QTableWidget::keyPressEvent(event);
 }
 
-StatResults DataTable::GetStatResults(double confidence, double inst_err)
+ErrCalcEngine::StatResults DataTable::GetStatResults(double confidence, double inst_err)
 {
-    StatResults res;
-    res.count = this->rowCount() - 1;
-    if (res.count < 2){
-        return res;
-    }
-    std::vector<double> data(res.count);
-    for (size_t i = 0; i < data.size(); i++){
-        data.at(i) = this->GetNum(i);
-    }
-    res.sum = std::accumulate(data.begin(), data.end(), 0.0);
-    res.count = data.size();
-    res.mean = res.sum / res.count;
-    res.dispersion = boost::math::statistics::sample_variance(data);
-    res.standartError = std::sqrt(res.dispersion / res.count);
-    boost::math::students_t dist(static_cast<double>(res.count - 1));
-    double p = 1.0 - (1.0 - confidence) / 2;
-    res.t_test = boost::math::quantile(dist, p);
-    res.absoluteError = res.t_test * res.standartError;
-    if (inst_err != 0)
-        res.absoluteError = std::hypot(res.absoluteError, inst_err);
+    ErrCalcEngine::InputData inputData;
+    ErrCalcEngine::StatResults res;
+    inputData.data = this->GetDataVector();
+    inputData.confidence = confidence;
+    inputData.instErr = inst_err;
+    res = ErrCalcEngine::CalculateStatResults(inputData);
     return res;
+}
+
+std::vector<double> DataTable::GetDataVector()
+{
+    qsizetype n = this->rowCount() - 1;
+    std::vector<double> res(n);
+    for (qsizetype i = 0; i < n; i++){
+        res.at(i) = this->GetNum(i);
+    }
+    return res;
+}
+
+void DataTable::PasteStr(QString s)
+{
+    QVector<QString> data = this->ParseString(s);
+    if (data.empty()){
+        return;
+    }
+    qsizetype startIndex = this->currentRow();
+    qsizetype reqRows = startIndex + data.size();
+    if (this->rowCount() < reqRows){
+        this->setRowCount(reqRows);
+    }
+    QTableWidgetItem* cell;
+    for (qsizetype i = 0; i < data.size(); i++){
+        reqRows = i + startIndex;
+        cell = this->item(reqRows, 0);
+        if (!cell){
+            cell = new QTableWidgetItem();
+            this->setItem(reqRows, 0, cell);
+        }
+        this->item(reqRows, 0)->setText(data.at(i));
+    }
+
 }
 
 //-------------------------PUBLIC SLOTS----------------------------------------------
@@ -92,7 +117,17 @@ double DataTable::GetNum(size_t row)
     return this->item(row, 0)->text().toDouble();
 }
 
-double DataTable::Sqr(double x)
+
+QVector<QString> DataTable::ParseString(QString s)
 {
-    return x * x;
+    s.replace(',', '.');
+    QVector<QString> data = s.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
+    bool ok;
+    for (qsizetype i = 0; i < data.size(); i++){
+        data.at(i).toDouble(&ok);
+        if (ok == false){
+            data.removeAt(i);
+        }
+    }
+    return data;
 }

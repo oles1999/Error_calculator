@@ -24,6 +24,7 @@ qt_add_executable(Error_calculator
     README.uk.md
     LICENSE
     README.md
+    src/errorsEngine.h src/errorsEngine.cpp
 )
 
 
