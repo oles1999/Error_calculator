@@ -20,7 +20,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "vcredist"; Description: "Install Microsoft Visual C++ v14 Redistributable (x64)"; GroupDescription: "Required Software:"; Flags: unchecked
 
 [Files]
-Source: "E:\MyProjects\Error_calculator\Error_calculator\dist\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\MyProjects\Error_calculator\Error_calculator\install\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\Error Calculator"; Filename: "{app}\bin\Error_calculator.exe"

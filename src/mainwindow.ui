@@ -45,7 +45,7 @@
        </layout>
       </item>
       <item>
-       <widget class="DataTable" name="tableWidgetData">
+       <widget class="DataColumn" name="tableWidgetData">
         <property name="editTriggers">
          <set>QAbstractItemView::EditTrigger::AnyKeyPressed|QAbstractItemView::EditTrigger::EditKeyPressed</set>
         </property>
@@ -182,9 +182,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>DataTable</class>
+   <class>DataColumn</class>
    <extends>QTableWidget</extends>
-   <header>datatable.h</header>
+   <header>datacolumn.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

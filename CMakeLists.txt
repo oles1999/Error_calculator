@@ -17,9 +17,9 @@ qt_add_executable(Error_calculator
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.h
-    ui/mainwindow.ui
-    src/datatable.h
-    src/datatable.cpp
+    src/mainwindow.ui
+    src/datacolumn.h
+    src/datacolumn.cpp
     resources/app.rc
     README.uk.md
     LICENSE
@@ -35,14 +35,12 @@ target_link_libraries(Error_calculator
         Boost::boost
 )
 
-# Налаштування інсталяції
 install(TARGETS Error_calculator
     BUNDLE  DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-# Офіційний автоматичний деплой Qt 6 (під MSVC працює без помилок)
 qt_generate_deploy_app_script(
     TARGET Error_calculator
     OUTPUT_SCRIPT deploy_script

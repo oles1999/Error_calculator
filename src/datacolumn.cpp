@@ -1,4 +1,4 @@
-#include "datatable.h"
+#include "datacolumn.h"
 #include <qapplication.h>
 #include <qmenu.h>
 #include <set>
@@ -7,23 +7,23 @@
 
 //-------------------------PUBLIC----------------------------------------------
 
-DataTable::DataTable(QWidget* parent):
+DataColumn::DataColumn(QWidget* parent):
     QTableWidget(parent)
 {
     this->setEditTriggers(QAbstractItemView::AnyKeyPressed |
                           QAbstractItemView::EditKeyPressed);
     this->setFocusPolicy(Qt::StrongFocus);
-    connect(this, &DataTable::cellChanged, this, &DataTable::AddCell);
+    connect(this, &DataColumn::cellChanged, this, &DataColumn::AddCell);
     this->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this, &DataTable::customContextMenuRequested, this, &DataTable::ShowContextMenu);
+    connect(this, &DataColumn::customContextMenuRequested, this, &DataColumn::ShowContextMenu);
 }
 
-DataTable::~DataTable()
+DataColumn::~DataColumn()
 {
 
 }
 
-void DataTable::keyPressEvent(QKeyEvent* event)
+void DataColumn::keyPressEvent(QKeyEvent* event)
 {
     if (event->matches(QKeySequence::Copy)){
         QVector<QTableWidgetItem*> items = this->selectedItems();
@@ -53,7 +53,7 @@ void DataTable::keyPressEvent(QKeyEvent* event)
     QTableWidget::keyPressEvent(event);
 }
 
-ErrCalcEngine::StatResults DataTable::GetStatResults(double confidence, double inst_err)
+ErrCalcEngine::StatResults DataColumn::GetStatResults(double confidence, double inst_err)
 {
     ErrCalcEngine::InputData inputData;
     ErrCalcEngine::StatResults res;
@@ -64,7 +64,7 @@ ErrCalcEngine::StatResults DataTable::GetStatResults(double confidence, double i
     return res;
 }
 
-std::vector<double> DataTable::GetDataVector()
+std::vector<double> DataColumn::GetDataVector()
 {
     qsizetype n = this->rowCount() - 1;
     std::vector<double> res(n);
@@ -74,7 +74,7 @@ std::vector<double> DataTable::GetDataVector()
     return res;
 }
 
-QString DataTable::CopyStr(QVector<QTableWidgetItem*> items)
+QString DataColumn::CopyStr(QVector<QTableWidgetItem*> items)
 {
     QString buf, itemText;
     QTableWidgetItem* item;
@@ -90,7 +90,7 @@ QString DataTable::CopyStr(QVector<QTableWidgetItem*> items)
     return buf;
 }
 
-void DataTable::PasteStr(QString s)
+void DataColumn::PasteStr(QString s)
 {
     QVector<QString> data = this->ParseString(s);
     if (data.empty()){
@@ -113,7 +113,7 @@ void DataTable::PasteStr(QString s)
     }
 }
 
-void DataTable::DeleteItems(QVector<QTableWidgetItem*> items)
+void DataColumn::DeleteItems(QVector<QTableWidgetItem*> items)
 {
     std::set<int, std::greater<int>> rows;
     for (qsizetype i = 0; i < items.size(); i++){
@@ -130,7 +130,7 @@ void DataTable::DeleteItems(QVector<QTableWidgetItem*> items)
 
 //-------------------------PUBLIC SLOTS----------------------------------------------
 
-void DataTable::AddCell(int x, int y)
+void DataColumn::AddCell(int x, int y)
 {
     QTableWidgetItem* item = this->item(x, y);
     bool ok;
@@ -149,13 +149,13 @@ void DataTable::AddCell(int x, int y)
 }
 
 //----------------------PRIVATE--------------------------------------------------
-double DataTable::GetNum(size_t row)
+double DataColumn::GetNum(size_t row)
 {
     return this->item(row, 0)->text().toDouble();
 }
 
 
-QVector<QString> DataTable::ParseString(QString s)
+QVector<QString> DataColumn::ParseString(QString s)
 {
     s.replace(',', '.');
     QVector<QString> data = s.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
@@ -169,7 +169,7 @@ QVector<QString> DataTable::ParseString(QString s)
     return data;
 }
 
-void DataTable::ShowContextMenu(const QPoint& pos)
+void DataColumn::ShowContextMenu(const QPoint& pos)
 {
     QMenu contextMenu(this);
     QAction* actionCopy = contextMenu.addAction("Copy\tCtrl+C");
