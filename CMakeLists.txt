@@ -18,13 +18,14 @@ qt_add_executable(Error_calculator
     src/mainwindow.cpp
     src/mainwindow.h
     src/mainwindow.ui
-    src/datacolumn.h
-    src/datacolumn.cpp
+    src/datatable.h
+    src/datatable.cpp
     resources/app.rc
     README.uk.md
     LICENSE
     README.md
     src/errorsEngine.h src/errorsEngine.cpp
+
 )
 
 

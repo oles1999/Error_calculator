@@ -1,17 +1,17 @@
-#ifndef DATACOLUMN_H
-#define DATACOLUMN_H
+#ifndef DataTable_H
+#define DataTable_H
 
 #include <QTableWidget>
 #include <QKeyEvent>
 #include "errorsEngine.h"
 
 
-class DataColumn : public QTableWidget
+class DataTable : public QTableWidget
 {
     Q_OBJECT
 public:
-    explicit DataColumn(QWidget* parent = nullptr);
-    ~DataColumn();
+    explicit DataTable(QWidget* parent = nullptr);
+    ~DataTable();
     void keyPressEvent(QKeyEvent* event) override;
     ErrCalcEngine::StatResults GetStatResults(double t_test, double inst_err = 0);
     std::vector<double> GetDataVector();
@@ -28,4 +28,4 @@ private:
 
 };
 
-#endif // DATACOLUMN_H
+#endif // DataTable_H

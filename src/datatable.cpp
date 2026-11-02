@@ -1,4 +1,4 @@
-#include "datacolumn.h"
+#include "datatable.h"
 #include <qapplication.h>
 #include <qmenu.h>
 #include <set>
