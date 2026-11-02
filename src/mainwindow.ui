@@ -45,7 +45,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QTableWidget" name="tableWidgetData">
+       <widget class="DataTable" name="tableWidgetData">
         <property name="editTriggers">
          <set>QAbstractItemView::EditTrigger::AnyKeyPressed|QAbstractItemView::EditTrigger::EditKeyPressed</set>
         </property>
@@ -180,6 +180,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DataTable</class>
+   <extends>QTableWidget</extends>
+   <header>datatable.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

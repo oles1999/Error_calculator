@@ -10,7 +10,7 @@ find_package(Boost REQUIRED)
 
 qt_standard_project_setup()
 
-set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/ui")
+set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 qt_add_executable(Error_calculator
     WIN32 MACOSX_BUNDLE
