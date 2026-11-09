@@ -23,6 +23,8 @@ void MainWindow::mousePressEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton && focusWidget()){
         focusWidget()->clearFocus();
+        ui->tableWidgetData->clearSelection();
+        ui->tableWidgetData->setCurrentCell(-1, -1);
     }
     QMainWindow::mousePressEvent(event);
 }

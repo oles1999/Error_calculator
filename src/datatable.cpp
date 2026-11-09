@@ -57,14 +57,15 @@ ErrCalcEngine::StatResults DataTable::GetStatResults(double confidence, double i
 {
     ErrCalcEngine::InputData inputData;
     ErrCalcEngine::StatResults res;
-    inputData.data = this->GetDataVector();
+    inputData.data = this->GetSelectedVector();
     inputData.confidence = confidence;
     inputData.instErr = inst_err;
     res = ErrCalcEngine::CalculateStatResults(inputData);
+
     return res;
 }
 
-std::vector<double> DataTable::GetDataVector()
+std::vector<double> DataTable::GetColumnVector(qsizetype icol)
 {
     qsizetype n = this->rowCount() - 1;
     std::vector<double> res(n);
@@ -72,6 +73,21 @@ std::vector<double> DataTable::GetDataVector()
         res.at(i) = this->GetNum(i);
     }
     return res;
+}
+
+std::vector<double> DataTable::GetSelectedVector()
+{
+    QVector<QTableWidgetItem*> items = this->selectedItems();
+    std::vector<double> data(items.size());
+    double x;
+    bool ok;
+    for (size_t i = 0; i < data.size(); i++){
+        x = items.at(i)->text().toDouble(&ok);
+        if (ok){
+            data.at(i) = x;
+        }
+    }
+    return data;
 }
 
 QString DataTable::CopyStr(QVector<QTableWidgetItem*> items)

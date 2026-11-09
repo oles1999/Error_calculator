@@ -14,7 +14,8 @@ public:
     ~DataTable();
     void keyPressEvent(QKeyEvent* event) override;
     ErrCalcEngine::StatResults GetStatResults(double t_test, double inst_err = 0);
-    std::vector<double> GetDataVector();
+    std::vector<double> GetColumnVector(qsizetype icol);
+    std::vector<double> GetSelectedVector();
     QString CopyStr(QVector<QTableWidgetItem*> items);
     void PasteStr(QString s);
     void DeleteItems(QVector<QTableWidgetItem*> items);
